@@ -42,7 +42,16 @@ container.appendChild(tag)
 function printTags(){
 window.print()
 }
-function refreshPage(){
-location.reload(true)
-}
+/* REFRESH BUTTON FUNCTION */
 
+function refreshPage(){
+
+document.getElementById("orderNo").value=""
+document.getElementById("customer").value=""
+document.getElementById("wash").value="DC"
+document.getElementById("delivery").value=""
+document.getElementById("qty").value=""
+document.getElementById("starchQty").value="0"
+
+document.getElementById("tags").innerHTML=""
+}  
