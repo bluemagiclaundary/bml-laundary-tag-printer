@@ -43,6 +43,6 @@ function printTags(){
 window.print()
 }
 function refreshPage(){
-location.reload()
+location.reload(true)
 }
 
