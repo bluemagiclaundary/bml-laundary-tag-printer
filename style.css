@@ -24,19 +24,20 @@ cursor:pointer;
 margin-top:20px;
 }
 
+/* Normal view */
+
 .tag{
 width:180px;
 border:1px dashed black;
 padding:10px;
 margin:10px;
 display:inline-block;
-font-size:14px;
 text-align:center;
 }
 
-/* PRINT SETTINGS FOR TAG PRINTER */
+/* PRINT SETTINGS */
 
-@media print{
+@media print {
 
 body{
 margin:0;
@@ -46,21 +47,32 @@ button{
 display:none;
 }
 
+.form{
+display:none;
+}
+
+h2{
+display:none;
+}
+
+/* EACH TAG = ONE LABEL */
+
 .tag{
 width:38mm;
 height:45mm;
+
 border:none;
 margin:0;
 padding:0;
-page-break-after:always;
 
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 
+page-break-after:always;
+
 font-size:12px;
 }
 
 }
-
