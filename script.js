@@ -25,7 +25,7 @@ tag.innerHTML=`<b>BML</b><br>
 ${orderNo}<br>
 ${customer}<br>
 ${wash}<br>
-${starchText}
+${starchText ? starchText + "<br>" : ""}
 ${delivery}<br> <b>${i}/${qty}</b>`
 
 container.appendChild(tag)
@@ -37,3 +37,4 @@ container.appendChild(tag)
 function printTags(){
 window.print()
 }
+
