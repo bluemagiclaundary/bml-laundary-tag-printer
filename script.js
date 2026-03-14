@@ -29,8 +29,8 @@ tag.innerHTML=
 <div>${customer}</div>
 <div>${wash}</div>
 ${starchLine}
-<div>${delivery}</div>
 <div><b>${i}/${qty}</b></div>
+<div>${delivery}</div>
 `
 
 container.appendChild(tag)
@@ -42,3 +42,4 @@ container.appendChild(tag)
 function printTags(){
 window.print()
 }
+
