@@ -42,4 +42,7 @@ container.appendChild(tag)
 function printTags(){
 window.print()
 }
+function refreshPage(){
+location.reload()
+}
 
