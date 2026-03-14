@@ -1,51 +1,10 @@
-body{
-font-family: Arial, sans-serif;
-margin:40px;
-}
-
-.form{
-display:grid;
-grid-template-columns:150px 200px;
-gap:10px;
-margin-bottom:20px;
-}
-
-input,select{
-padding:6px;
-}
-
-button{
-padding:8px 12px;
-margin-right:10px;
-cursor:pointer;
-}
-
-#tags{
-margin-top:20px;
-}
-
-/* Normal view */
-
-.tag{
-width:180px;
-border:1px dashed black;
-padding:10px;
-margin:10px;
-display:inline-block;
-text-align:center;
-}
-
-/* PRINT SETTINGS */
-
 @media print {
 
 body{
 margin:0;
 }
 
-button{
-display:none;
-}
+/* hide form and title */
 
 .form{
 display:none;
@@ -55,15 +14,22 @@ h2{
 display:none;
 }
 
-/* EACH TAG = ONE LABEL */
+button{
+display:none;
+}
+
+/* container */
+
+#tags{
+margin:0;
+padding:0;
+}
+
+/* each tag */
 
 .tag{
 width:38mm;
 height:45mm;
-
-border:none;
-margin:0;
-padding:0;
 
 display:flex;
 flex-direction:column;
@@ -72,7 +38,13 @@ align-items:center;
 
 page-break-after:always;
 
+border:none;
+margin:0;
+padding:0;
+
 font-size:12px;
 }
 
 }
+
+
