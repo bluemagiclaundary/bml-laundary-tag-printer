@@ -1,5 +1,5 @@
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
 margin:40px;
 }
 
@@ -34,8 +34,33 @@ font-size:14px;
 text-align:center;
 }
 
+/* PRINT SETTINGS FOR TAG PRINTER */
+
 @media print{
+
+body{
+margin:0;
+}
+
 button{
 display:none;
 }
+
+.tag{
+width:38mm;
+height:45mm;
+border:none;
+margin:0;
+padding:0;
+page-break-after:always;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+font-size:12px;
 }
+
+}
+
