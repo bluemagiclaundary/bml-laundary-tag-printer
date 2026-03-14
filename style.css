@@ -3,6 +3,12 @@ font-family: Arial, sans-serif;
 margin:40px;
 }
 
+/* TITLE COLOR */
+
+h2{
+color:#0b5ed7;
+}
+
 /* FORM DESIGN */
 
 .form{
