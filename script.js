@@ -12,21 +12,26 @@ container.innerHTML=""
 
 for(let i=1;i<=qty;i++){
 
-let starchText=""
+let starchLine=""
 
 if(i<=starchQty){
-starchText="STARCH"
+starchLine="<div>STARCH</div>"
 }
 
 let tag=document.createElement("div")
 tag.className="tag"
 
-tag.innerHTML=`<b>BML</b><br>
-${orderNo}<br>
-${customer}<br>
-${wash}<br>
-${starchText ? starchText + "<br>" : ""}
-${delivery}<br> <b>${i}/${qty}</b>`
+tag.innerHTML=
+`
+
+<div><b>BML</b></div>
+<div>${orderNo}</div>
+<div>${customer}</div>
+<div>${wash}</div>
+${starchLine}
+<div>${delivery}</div>
+<div><b>${i}/${qty}</b></div>
+`
 
 container.appendChild(tag)
 
@@ -37,4 +42,3 @@ container.appendChild(tag)
 function printTags(){
 window.print()
 }
-
