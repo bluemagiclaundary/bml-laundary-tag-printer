@@ -9,28 +9,28 @@ let dcStarchQty=parseInt(document.getElementById("dcStarchQty").value)||0
 let dcStarchType=document.getElementById("dcStarchType").value
 
 let wiQty=parseInt(document.getElementById("wiQty").value)||0
-let wiStarchQty=parseInt(document.getElementById("wiStarchQty").value)||0
-let wiStarchType=document.getElementById("wiStarchType").value
-
 let wfQty=parseInt(document.getElementById("wfQty").value)||0
 let siQty=parseInt(document.getElementById("siQty").value)||0
 
 let garments=[]
 
 for(let i=0;i<dcQty;i++){
-garments.push({wash:"DC", starch:i<dcStarchQty ? dcStarchType : ""})
+garments.push({
+wash:"DC",
+starch:(i<dcStarchQty && dcStarchType!="") ? dcStarchType : ""
+})
 }
 
 for(let i=0;i<wiQty;i++){
-garments.push({wash:"WI", starch:i<wiStarchQty ? wiStarchType : ""})
+garments.push({wash:"WI",starch:""})
 }
 
 for(let i=0;i<wfQty;i++){
-garments.push({wash:"WF", starch:""})
+garments.push({wash:"WF",starch:""})
 }
 
 for(let i=0;i<siQty;i++){
-garments.push({wash:"SI", starch:""})
+garments.push({wash:"SI",starch:""})
 }
 
 let total=garments.length
