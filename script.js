@@ -1,7 +1,7 @@
 function generateTags(){
 
 let orderNo=document.getElementById("orderNo").value
-let customer=document.getElementById("customer").value
+let customer=document.getElementById("customer").value.toUpperCase()
 let delivery=document.getElementById("delivery").value
 
 let dcQty=parseInt(document.getElementById("dcQty").value)||0
@@ -11,7 +11,18 @@ let dcStarchType=document.getElementById("dcStarchType").value
 let wiQty=parseInt(document.getElementById("wiQty").value)||0
 let wfQty=parseInt(document.getElementById("wfQty").value)||0
 let siQty=parseInt(document.getElementById("siQty").value)||0
-let polishQty=parseInt(document.getElementById("polishQty").value)||0
+let polishQty=parseInt(document.getElementById("polishQty")?.value)||0
+
+/* convert date to DD-MM-YY */
+
+let formattedDate=""
+if(delivery){
+let d=new Date(delivery)
+let day=("0"+d.getDate()).slice(-2)
+let month=("0"+(d.getMonth()+1)).slice(-2)
+let year=d.getFullYear().toString().slice(-2)
+formattedDate="${day}-${month}-${year}"
+}
 
 let garments=[]
 
@@ -45,9 +56,10 @@ container.innerHTML=""
 
 garments.forEach((g,index)=>{
 
-let starchLine=""
+let washLine=g.wash
+
 if(g.starch){
-starchLine="<div>STARCH "+g.starch+"</div>"
+washLine+=" ST-"+g.starch
 }
 
 let tag=document.createElement("div")
@@ -58,13 +70,10 @@ tag.innerHTML=`
 <div><b>BML</b></div>
 <div>${orderNo}</div>
 <div>${customer}</div>
-<div>${g.wash}</div>
-${starchLine}
+<div>${washLine}</div>
 <div><b>${index+1}/${total}</b></div>
-<div>${delivery}</div>
-`
-
-container.appendChild(tag)
+<div>${formattedDate}</div>
+`container.appendChild(tag)
 
 })
 
