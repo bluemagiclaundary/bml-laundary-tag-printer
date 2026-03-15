@@ -11,6 +11,7 @@ let dcStarchType=document.getElementById("dcStarchType").value
 let wiQty=parseInt(document.getElementById("wiQty").value)||0
 let wfQty=parseInt(document.getElementById("wfQty").value)||0
 let siQty=parseInt(document.getElementById("siQty").value)||0
+let polishQty=parseInt(document.getElementById("polishQty").value)||0
 
 let garments=[]
 
@@ -31,6 +32,10 @@ garments.push({wash:"WF",starch:""})
 
 for(let i=0;i<siQty;i++){
 garments.push({wash:"SI",starch:""})
+}
+
+for(let i=0;i<polishQty;i++){
+garments.push({wash:"POLISH",starch:""})
 }
 
 let total=garments.length
