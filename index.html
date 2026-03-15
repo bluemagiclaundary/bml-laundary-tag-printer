@@ -3,13 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BLUE MAGIC LAUNDRY TAG PRINTER</title>
+<title>BML Laundry Tag Printer</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h2>BLUE MAGIC LAUNDRY TAG PRINTER</h2>
+<h2>BML Laundry Tag Printer</h2>
 
 <div class="form">
 
@@ -17,19 +17,41 @@
 
 <label>Customer Name</label> <input id="customer">
 
-<label>Wash Type</label> <select id="wash">
-
-<option value="DC">DC</option>
-<option value="WI">WI</option>
-<option value="WF">WF</option>
-<option value="SI">SI</option>
-</select>
-
 <label>Delivery Date</label> <input id="delivery" type="date">
 
-<label>Total Quantity</label> <input id="qty" type="number">
+<hr>
 
-<label>Starch Quantity</label> <input id="starchQty" type="number" value="0">
+<label>DC Quantity</label> <input id="dcQty" type="number" value="0">
+
+<label>DC Starch Qty</label> <input id="dcStarchQty" type="number" value="0">
+
+<label>DC Starch Type</label> <select id="dcStarchType">
+
+<option value="">None</option>
+<option value="L">Light</option>
+<option value="M">Medium</option>
+<option value="H">Heavy</option>
+</select>
+
+<hr>
+
+<label>WI Quantity</label> <input id="wiQty" type="number" value="0">
+
+<label>WI Starch Qty</label> <input id="wiStarchQty" type="number" value="0">
+
+<label>WI Starch Type</label> <select id="wiStarchType">
+
+<option value="">None</option>
+<option value="L">Light</option>
+<option value="M">Medium</option>
+<option value="H">Heavy</option>
+</select>
+
+<hr>
+
+<label>WF Quantity</label> <input id="wfQty" type="number" value="0">
+
+<label>SI Quantity</label> <input id="siQty" type="number" value="0">
 
 </div>
 
