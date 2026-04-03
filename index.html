@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>BML Laundry Tag Printer</title>
+    <title>BML Printer</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <h2>BML Laundry Tag Printer</h2>
     <div class="form">
         <div class="row"><label>Order No</label><input id="orderNo"></div>
         <div class="row"><label>Customer Name</label><input id="customer"></div>
-        <div class="row"><label>DC Quantity</label><input id="dcQty" type="number" value="0"></div>
+        <div class="row"><label>DC Qty</label><input id="dcQty" type="number" value="0"></div>
         <div class="row">
-            <label>DC Starch Type</label>
+            <label>Starch Type</label>
             <select id="dcStarchType">
                 <option value="">None</option>
                 <option value="L">Light</option>
@@ -21,19 +20,17 @@
                 <option value="H">Heavy</option>
             </select>
         </div>
-        <div class="row"><label>WI Quantity</label><input id="wiQty" type="number" value="0"></div>
-        <div class="row"><label>WF Quantity</label><input id="wfQty" type="number" value="0"></div>
-        <div class="row"><label>SI Quantity</label><input id="siQty" type="number" value="0"></div>
+        <div class="row"><label>WI Qty</label><input id="wiQty" type="number" value="0"></div>
+        <div class="row"><label>WF Qty</label><input id="wfQty" type="number" value="0"></div>
+        <div class="row"><label>SI Qty</label><input id="siQty" type="number" value="0"></div>
         <div class="row"><label>Polish Qty</label><input id="polishQty" type="number" value="0"></div>
-        <div class="row"><label>Delivery Date</label><input id="delivery" type="date"></div>
+        <div class="row"><label>Delivery</label><input id="delivery" type="date"></div>
     </div>
     <br>
     <button onclick="generateTags()">Generate Tags</button>
     <button onclick="printTags()">Print</button>
     <button onclick="refreshPage()">Refresh</button>
-
     <div id="tags"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
