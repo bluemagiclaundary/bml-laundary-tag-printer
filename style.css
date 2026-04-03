@@ -10,8 +10,8 @@
 
     .tag {
         width: 38mm;
-        /* Reduced from 45mm to 42mm to prevent blank pages */
-        height: 42mm; 
+        /* Reduced from 45mm to 40mm to prevent blank pages */
+        height: 40mm; 
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
