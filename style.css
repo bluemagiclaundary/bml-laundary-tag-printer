@@ -1,46 +1,44 @@
 body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
-h2 { color: #0b5ed7; }
-.form { max-width: 420px; background: white; padding: 20px; border-radius: 8px; }
-.row { display: flex; align-items: center; margin-bottom: 10px; }
-.row label { width: 140px; font-weight: bold; }
-.row input, .row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 4px; background: #0b5ed7; color: white; font-weight: bold; }
+.form { max-width: 400px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.row { display: flex; align-items: center; margin-bottom: 8px; }
+.row label { width: 130px; font-size: 14px; }
+.row input, .row select { flex: 1; padding: 6px; border: 1px solid #ccc; }
+button { padding: 10px 15px; margin: 10px 5px 0 0; cursor: pointer; border: none; background: #0b5ed7; color: white; }
 
 /* SCREEN PREVIEW */
-#tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
-.tag { width: 150px; border: 1px dashed #333; padding: 10px; text-align: center; background: white; }
+#tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 5px; }
+.tag { width: 140px; border: 1px dashed #999; padding: 10px; text-align: center; background: white; }
 
-/* PRINT SETTINGS - CRITICAL FOR 38mm ROLL */
+/* PRINT SETTINGS */
 @media print {
     @page {
-        size: 38mm auto; /* Force 38mm width, auto height */
-        margin: 0;       /* Removes all browser-added white space */
+        size: 38mm auto; /* CRITICAL: Matches your roll width */
+        margin: 0;       /* Removes empty gaps */
     }
-    body { margin: 0; padding: 0; width: 38mm; background: none; }
+    
+    body { margin: 0; padding: 0; width: 38mm; }
     .form, h2, button, br { display: none !important; }
-    #tags { margin: 0; padding: 0; width: 38mm; display: block !important; }
+    #tags { margin: 0; padding: 0; display: block !important; }
 
     .tag {
         width: 38mm;
-        height: auto; /* Let content define height */
-        min-height: 40mm; /* Adjust based on your physical label height */
-        padding: 5mm 0;
-        margin: 0;
-        border: none;
-        border-bottom: 1px dashed #000; /* Visible cut line */
+        height: auto;
+        min-height: 35mm; /* Adjust based on your preferred label length */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        page-break-after: always; /* Force printer to recognize end of tag */
+        border: none;
+        border-bottom: 1px dashed #000; /* Cutting guide */
+        page-break-after: always;
         break-after: page;
+        padding: 4mm 0;
     }
 
-    .tag div { line-height: 1.2; font-family: 'Courier New', Courier, monospace; }
     .bml-head { font-size: 14pt; font-weight: bold; }
-    .order-line { font-size: 18pt; font-weight: 900; margin-bottom: 2px; }
-    .cust-name { font-size: 10pt; text-transform: uppercase; }
-    .service-line { font-size: 11pt; border-top: 1px solid #000; margin-top: 3px; font-weight: bold; }
+    .order-line { font-size: 18pt; font-weight: 900; margin: 1mm 0; }
+    .cust-name { font-size: 10pt; font-weight: bold; overflow: hidden; white-space: nowrap; width: 90%; }
+    .service-line { font-size: 12pt; font-weight: bold; border-top: 1px solid #000; margin-top: 2mm; width: 80%; }
     .count-line { font-size: 12pt; font-weight: bold; }
-    .date-line { font-size: 9pt; }
+    .date-line { font-size: 9pt; margin-top: 1mm; }
 }
