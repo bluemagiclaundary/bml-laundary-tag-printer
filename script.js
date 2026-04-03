@@ -11,35 +11,57 @@ function generateTags() {
         return;
     }
 
-    // Short forms for 38mm roll
-    const services = [
-        { id: 'dcQty', label: 'DC', starch: true },
-        { id: 'wiQty', label: 'W&I' },
-        { id: 'wfQty', label: 'W&F' },
-        { id: 'siQty', label: 'S.IRON' },
-        { id: 'polishQty', label: 'POL' } // Shortened to POL
-    ];
-
-    services.forEach(service => {
-        const qty = parseInt(document.getElementById(service.id).value) || 0;
-        const starchVal = service.starch ? document.getElementById('dcStarchType').value : "";
-
+    // Helper Function to Create Tags
+    function createTagLoop(qty, label) {
         for (let i = 1; i <= qty; i++) {
-            const tag = document.createElement('div');
-            tag.className = 'tag';
-            
-            tag.innerHTML = `
+            const tagDiv = document.createElement('div');
+            tagDiv.className = 'tag';
+            tagDiv.innerHTML = `
                 <div class="bml-head">BML</div>
                 <div class="order-line">#${orderNo}</div>
-                <div class="cust-name">${customer.toUpperCase()}</div>
-                <div class="service-line">${service.label}${starchVal ? ' ST-' + starchVal : ''}</div>
+                <div class="cust-name">${customer}</div>
+                <div class="service-line">${label}</div>
                 <div class="count-line">PCS: ${i} / ${qty}</div>
-                <div class="date-line">DEL: ${delivery || ''}</div>
+                <div class="date-line">DEL: ${delivery || '---'}</div>
             `;
-            tagsContainer.appendChild(tag);
+            tagsContainer.appendChild(tagDiv);
         }
-    });
+    }
+
+    // 1. Normal Dry Clean
+    const dcNormal = parseInt(document.getElementById('dcQty').value) || 0;
+    if (dcNormal > 0) createTagLoop(dcNormal, 'DC');
+
+    // 2. Starch Dry Clean
+    const dcStarchQty = parseInt(document.getElementById('dcStarchQty').value) || 0;
+    const starchType = document.getElementById('dcStarchType').value;
+    if (dcStarchQty > 0) {
+        const starchLabel = starchType ? `DC ST-${starchType}` : 'DC STARCH';
+        createTagLoop(dcStarchQty, starchLabel);
+    }
+
+    // 3. Other Services (Short Forms)
+    const wi = parseInt(document.getElementById('wiQty').value) || 0;
+    if (wi > 0) createTagLoop(wi, 'W&I');
+
+    const wf = parseInt(document.getElementById('wfQty').value) || 0;
+    if (wf > 0) createTagLoop(wf, 'W&F');
+
+    const si = parseInt(document.getElementById('siQty').value) || 0;
+    if (si > 0) createTagLoop(si, 'S.IRON');
+
+    const pol = parseInt(document.getElementById('polishQty').value) || 0;
+    if (pol > 0) createTagLoop(pol, 'POL');
 }
 
-function printTags() { window.print(); }
-function refreshPage() { location.reload(); }
+function printTags() {
+    if (document.querySelectorAll('.tag').length === 0) {
+        alert("Generate tags first!");
+        return;
+    }
+    window.print();
+}
+
+function refreshPage() {
+    if(confirm("Clear all data?")) window.location.reload();
+}
