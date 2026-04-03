@@ -1,49 +1,53 @@
-body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
-h2 { color: #0b5ed7; margin-bottom: 20px; }
-
-.form { max-width: 420px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.row { display: flex; align-items: center; margin-bottom: 12px; }
-.row label { width: 150px; font-weight: 500; }
-.row input, .row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-
-button { padding: 10px 18px; margin-right: 10px; cursor: pointer; border: none; border-radius: 4px; background: #0b5ed7; color: white; font-weight: bold; }
-button:hover { background: #0a58ca; }
-
-/* SCREEN PREVIEW */
-#tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
-.tag { width: 150px; border: 1px dashed #333; padding: 10px; text-align: center; background: white; }
-
-/* PRINT SETTINGS - 38mm ROLL */
 @media print {
     @page {
-        size: 38mm auto;
+        size: 38mm 45mm;
         margin: 0;
     }
+    
     body { margin: 0; padding: 0; width: 38mm; background: none; }
     .form, h2, button, br { display: none !important; }
     #tags { margin: 0; padding: 0; width: 38mm; display: block !important; }
 
     .tag {
         width: 38mm;
-        height: auto;
-        min-height: 40mm;
+        /* Reduced from 45mm to 42mm to prevent blank pages */
+        height: 42mm; 
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-align: center;
-        border: none;
-        border-bottom: 1px dashed #000;
-        padding: 4mm 0;
+        
+        /* Remove the border/dashed line as it takes up extra height */
+        border: none; 
+        margin: 0;
+        padding: 0;
+        
         page-break-after: always;
         break-after: page;
+        overflow: hidden;
     }
 
-    .tag div { font-family: 'Courier New', Courier, monospace; line-height: 1.2; }
-    .bml-head { font-size: 14pt; font-weight: bold; }
-    .order-line { font-size: 18pt; font-weight: 900; margin: 1mm 0; }
-    .cust-name { font-size: 10pt; text-transform: uppercase; font-weight: bold; width: 90%; overflow: hidden; white-space: nowrap; }
-    .service-line { font-size: 11pt; border-top: 1px solid #000; margin-top: 2mm; font-weight: bold; width: 85%; }
-    .count-line { font-size: 12pt; font-weight: bold; }
-    .date-line { font-size: 8pt; margin-top: 1mm; }
+    .tag div { 
+        font-family: 'Arial', sans-serif; 
+        font-weight: 900 !important; 
+        color: #000;
+        line-height: 1.0; 
+        margin: 0;
+    }
+
+    .bml-head { font-size: 14pt; margin-top: 1mm; margin-bottom: 1mm; }
+    .order-line { font-size: 20pt; margin-bottom: 1mm; }
+    .cust-name { font-size: 10pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
+    
+    .service-line { 
+        font-size: 13pt; 
+        border-top: 2px solid #000; 
+        margin-top: 1mm; 
+        padding-top: 1mm;
+        width: 90%; 
+    }
+
+    .count-line { font-size: 13pt; margin-top: 1mm; }
+    .date-line { font-size: 11pt; margin-top: 2mm; }
 }
