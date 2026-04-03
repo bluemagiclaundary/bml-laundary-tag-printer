@@ -7,16 +7,17 @@ function generateTags() {
     tagsContainer.innerHTML = '';
 
     if (!orderNo || !customer) {
-        alert("Please fill in Order # and Name");
+        alert("Please enter Order No and Customer Name");
         return;
     }
 
+    // Short forms for 38mm roll
     const services = [
-        { id: 'dcQty', label: 'DRY CLEAN', starch: true },
-        { id: 'wiQty', label: 'WASH & IRON' },
-        { id: 'wfQty', label: 'WASH & FOLD' },
-        { id: 'siQty', label: 'STEAM IRON' },
-        { id: 'polishQty', label: 'POLISH' }
+        { id: 'dcQty', label: 'DC', starch: true },
+        { id: 'wiQty', label: 'W&I' },
+        { id: 'wfQty', label: 'W&F' },
+        { id: 'siQty', label: 'S.IRON' },
+        { id: 'polishQty', label: 'POL' } // Shortened to POL
     ];
 
     services.forEach(service => {
@@ -24,30 +25,21 @@ function generateTags() {
         const starchVal = service.starch ? document.getElementById('dcStarchType').value : "";
 
         for (let i = 1; i <= qty; i++) {
-            const tagDiv = document.createElement('div');
-            tagDiv.className = 'tag';
-
-            tagDiv.innerHTML = `
+            const tag = document.createElement('div');
+            tag.className = 'tag';
+            
+            tag.innerHTML = `
                 <div class="bml-head">BML</div>
                 <div class="order-line">#${orderNo}</div>
-                <div class="cust-name">${customer}</div>
-                <div class="service-line">${service.label} ${starchVal ? '('+starchVal+')' : ''}</div>
+                <div class="cust-name">${customer.toUpperCase()}</div>
+                <div class="service-line">${service.label}${starchVal ? ' ST-' + starchVal : ''}</div>
                 <div class="count-line">PCS: ${i} / ${qty}</div>
-                <div class="date-line">DEL: ${delivery || '---'}</div>
+                <div class="date-line">DEL: ${delivery || ''}</div>
             `;
-            tagsContainer.appendChild(tagDiv);
+            tagsContainer.appendChild(tag);
         }
     });
 }
 
-function printTags() {
-    if (document.querySelectorAll('.tag').length === 0) {
-        alert("Generate tags first!");
-        return;
-    }
-    window.print();
-}
-
-function refreshPage() {
-    if(confirm("Clear data?")) window.location.reload();
-}
+function printTags() { window.print(); }
+function refreshPage() { location.reload(); }
