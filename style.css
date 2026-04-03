@@ -1,3 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background: #fafafa;
+}
+
+h2 {
+    color: #0b5ed7;
+    margin-bottom: 25px;
+}
+
+.form {
+    max-width: 420px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.row label {
+    width: 160px;
+    font-weight: 600;
+    color: #333;
+}
+
+.row input,
+.row select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #0b5ed7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #084298;
+}
+
+/* Screen Preview for Tags */
+#tags {
+    margin-top: 30px;
+}
+
+.tag {
+    width: 150px;
+    border: 1px dashed black;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    background: white;
+}
+
+/* --- 2. PRINT STYLING (Your exact settings for the 38mm Roll) --- */
 @media print {
     @page {
         size: 38mm 45mm;
@@ -5,24 +76,28 @@
     }
     
     body { margin: 0; padding: 0; width: 38mm; background: none; }
+    
+    /* Hide everything except the tags */
     .form, h2, button, br { display: none !important; }
-    #tags { margin: 0; padding: 0; width: 38mm; display: block !important; }
+    
+    #tags { 
+        margin: 0; 
+        padding: 0; 
+        width: 38mm; 
+        display: block !important; 
+    }
 
     .tag {
         width: 38mm;
-        /* Reduced from 45mm to 40mm to prevent blank pages */
-        height: 40mm; 
+        height: 40mm; /* Safety gap to prevent blank labels */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         text-align: center;
-        
-        /* Remove the border/dashed line as it takes up extra height */
-        border: none; 
+        border: none;
         margin: 0;
         padding: 0;
-        
         page-break-after: always;
         break-after: page;
         overflow: hidden;
@@ -36,7 +111,7 @@
         margin: 0;
     }
 
-    .bml-head { font-size: 14pt; margin-top: 1mm; margin-bottom: 1mm; }
+    .bml-head { font-size: 14pt; margin-top: 2mm; margin-bottom: 1mm; }
     .order-line { font-size: 20pt; margin-bottom: 1mm; }
     .cust-name { font-size: 10pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
     
