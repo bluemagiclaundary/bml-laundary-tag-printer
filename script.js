@@ -1,108 +1,53 @@
-function generateTags(){
+function generateTags() {
+    const orderNo = document.getElementById('orderNo').value;
+    const customer = document.getElementById('customer').value;
+    const delivery = document.getElementById('delivery').value;
+    const tagsContainer = document.getElementById('tags');
+    
+    tagsContainer.innerHTML = '';
 
-let orderNo=document.getElementById("orderNo").value;
-let customer=document.getElementById("customer").value.toUpperCase();
-let delivery=document.getElementById("delivery").value;
+    if (!orderNo || !customer) {
+        alert("Please fill in Order # and Name");
+        return;
+    }
 
-let dcQty=parseInt(document.getElementById("dcQty").value) || 0;
-let dcStarchQty=parseInt(document.getElementById("dcStarchQty").value) || 0;
-let dcStarchType=document.getElementById("dcStarchType").value;
+    const services = [
+        { id: 'dcQty', label: 'DRY CLEAN', starch: true },
+        { id: 'wiQty', label: 'WASH & IRON' },
+        { id: 'wfQty', label: 'WASH & FOLD' },
+        { id: 'siQty', label: 'STEAM IRON' },
+        { id: 'polishQty', label: 'POLISH' }
+    ];
 
-let wiQty=parseInt(document.getElementById("wiQty").value) || 0;
-let wfQty=parseInt(document.getElementById("wfQty").value) || 0;
-let siQty=parseInt(document.getElementById("siQty").value) || 0;
+    services.forEach(service => {
+        const qty = parseInt(document.getElementById(service.id).value) || 0;
+        const starchVal = service.starch ? document.getElementById('dcStarchType').value : "";
 
-let polishQty = 0;
-let polishInput = document.getElementById("polishQty");
-if(polishInput){
-polishQty = parseInt(polishInput.value) || 0;
+        for (let i = 1; i <= qty; i++) {
+            const tagDiv = document.createElement('div');
+            tagDiv.className = 'tag';
+
+            tagDiv.innerHTML = `
+                <div class="bml-head">BML</div>
+                <div class="order-line">#${orderNo}</div>
+                <div class="cust-name">${customer}</div>
+                <div class="service-line">${service.label} ${starchVal ? '('+starchVal+')' : ''}</div>
+                <div class="count-line">PCS: ${i} / ${qty}</div>
+                <div class="date-line">DEL: ${delivery || '---'}</div>
+            `;
+            tagsContainer.appendChild(tagDiv);
+        }
+    });
 }
 
-/* format date DD-MM-YY */
-
-let formattedDate="";
-if(delivery){
-let d=new Date(delivery);
-let day=("0"+d.getDate()).slice(-2);
-let month=("0"+(d.getMonth()+1)).slice(-2);
-let year=d.getFullYear().toString().slice(-2);
-formattedDate=day+"-"+month+"-"+year;
+function printTags() {
+    if (document.querySelectorAll('.tag').length === 0) {
+        alert("Generate tags first!");
+        return;
+    }
+    window.print();
 }
 
-let garments=[];
-
-/* DC garments */
-
-for(let i=0;i<dcQty;i++){
-let starch="";
-if(i<dcStarchQty && dcStarchType!=""){
-starch=" ST-"+dcStarchType;
-}
-garments.push("DC"+starch);
-}
-
-/* WI garments */
-
-for(let i=0;i<wiQty;i++){
-garments.push("WI");
-}
-
-/* WF garments */
-
-for(let i=0;i<wfQty;i++){
-garments.push("WF");
-}
-
-/* SI garments */
-
-for(let i=0;i<siQty;i++){
-garments.push("SI");
-}
-
-/* POLISH garments */
-
-for(let i=0;i<polishQty;i++){
-garments.push("POLISH");
-}
-
-let total=garments.length;
-
-let container=document.getElementById("tags");
-container.innerHTML="";
-
-garments.forEach(function(wash,index){
-
-let tag=document.createElement("div");
-tag.className="tag";
-
-tag.innerHTML=
-"<div><b>BML</b></div>"+
-"<div>"+orderNo+"</div>"+
-"<div>"+customer+"</div>"+
-"<div>"+wash+"</div>"+
-"<div><b>"+(index+1)+"/"+total+"</b></div>"+
-"<div>"+formattedDate+"</div>";
-
-container.appendChild(tag);
-
-});
-
-}
-
-function printTags(){
-window.print();
-}
-
-function refreshPage(){
-
-document.querySelectorAll("input").forEach(function(i){
-i.value="";
-});
-
-document.querySelectorAll("select").forEach(function(s){
-s.selectedIndex=0;
-});
-
-document.getElementById("tags").innerHTML="";
-
+function refreshPage() {
+    if(confirm("Clear data?")) window.location.reload();
 }
