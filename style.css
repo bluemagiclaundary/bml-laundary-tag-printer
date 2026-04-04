@@ -41,7 +41,6 @@ button {
     background: white;
 }
 
-/* --- PRINT STYLING (No Bold / Uniform Format) --- */
 @media print {
     @page {
         size: 38mm 45mm;
@@ -55,7 +54,8 @@ button {
         background: none; 
     }
     
-    .no-print { display: none !important; }
+    /* Hides the form and buttons so they don't add extra space */
+    .no-print, .form, h2, button, br { display: none !important; }
     
     #tags { 
         margin: 0; 
@@ -66,7 +66,8 @@ button {
 
     .tag {
         width: 38mm;
-        height: 44mm; /* Adjusted to prevent the extra 9th blank page */
+        /* Reduced from 44mm to 42mm to force the 9th page to vanish */
+        height: 42mm; 
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -83,21 +84,20 @@ button {
 
     .tag div { 
         font-family: 'Arial', sans-serif; 
-        /* Removed '900' and 'bold' - now using standard weight */
+        /* Forces standard weight for everything */
         font-weight: normal !important; 
         color: #000;
-        line-height: 1.2; 
+        line-height: 1.1; 
         margin: 0;
     }
 
-    /* All text sizes made consistent and professional */
     .bml-head { font-size: 14pt; margin-top: 2mm; }
-    .order-line { font-size: 14pt; margin-bottom: 1mm; } /* Matches BML size */
-    .cust-name { font-size: 11pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
+    .order-line { font-size: 14pt; margin-bottom: 1mm; } 
+    .cust-name { font-size: 10pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
     
     .service-line { 
         font-size: 12pt; 
-        border-top: 1px solid #000; /* Thinner line for a cleaner look */
+        border-top: 1px solid #000; 
         margin-top: 1mm; 
         padding-top: 1mm;
         width: 90%; 
