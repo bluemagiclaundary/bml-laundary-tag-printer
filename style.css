@@ -1,71 +1,3 @@
-/* GENERAL SCREEN STYLING */
-body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-    background: #fafafa;
-}
-
-h2 { 
-    color: #0b5ed7; 
-    margin-bottom: 25px; 
-}
-
-.form {
-    max-width: 420px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.row { 
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 14px; 
-}
-
-.row label { 
-    width: 160px; 
-    font-weight: 600; 
-    color: #333; 
-}
-
-.row input, 
-.row select { 
-    flex: 1; 
-    padding: 8px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-}
-
-button {
-    padding: 10px 16px;
-    margin-right: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    background-color: #0b5ed7;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-#tags { 
-    margin-top: 30px; 
-}
-
-/* TAG DESIGN (SCREEN VIEW) */
-.tag {
-    width: 150px;
-    border: 1px dashed black;
-    padding: 10px;
-    margin: 10px;
-    display: inline-block;
-    text-align: center;
-    background: white;
-}
-
-/* ================= PRINT STYLING ================= */
 @media print {
 
     @page {
@@ -76,82 +8,64 @@ button {
     body {
         margin: 0;
         padding: 0;
-        background: none;
     }
 
-    /* Hide unnecessary UI */
     .no-print, .form, h2, button, br {
         display: none !important;
     }
 
     #tags {
-        margin: 0;
-        padding: 0;
+        display: block;
     }
 
-    /* EACH TAG = ONE PAGE */
+    /* 🔥 CRITICAL FIX */
     .tag {
         width: 38mm;
         height: 45mm;
-        box-sizing: border-box;
 
         display: block;
-        text-align: center;
+        position: relative;
 
-        border: none;
+        page-break-before: always;   /* ADD THIS */
+        page-break-after: always;
+
+        break-before: page;          /* MODERN SUPPORT */
+        break-after: page;
+
+        box-sizing: border-box;
         margin: 0;
         padding: 2mm;
-
-        page-break-after: always;
-        break-after: page;
+        border: none;
+        text-align: center;
     }
 
-    /* PREVENT EXTRA BLANK PAGE */
+    /* FIRST TAG SHOULD NOT ADD EXTRA PAGE */
+    .tag:first-child {
+        page-break-before: auto;
+        break-before: auto;
+    }
+
     .tag:last-child {
         page-break-after: auto;
         break-after: auto;
     }
 
-    /* TEXT STYLING */
     .tag div {
         font-family: Arial, sans-serif;
         font-weight: normal !important;
-        color: #000;
         line-height: 1.2;
         margin: 0;
     }
 
-    .bml-head {
-        font-size: 13pt;
-        margin-bottom: 1mm;
-    }
-
-    .order-line {
-        font-size: 13pt;
-        margin-bottom: 1mm;
-    }
-
-    .cust-name {
-        font-size: 10pt;
-        text-transform: uppercase;
-        margin-bottom: 1mm;
-        word-wrap: break-word;
-    }
-
+    .bml-head { font-size: 13pt; }
+    .order-line { font-size: 13pt; }
+    .cust-name { font-size: 10pt; }
     .service-line {
         font-size: 11pt;
         border-top: 1px solid #000;
         margin-top: 1mm;
         padding-top: 1mm;
     }
-
-    .count-line {
-        font-size: 11pt;
-        margin-top: 1mm;
-    }
-
-    .date-line {
-        font-size: 10pt;
-        margin-top: 2mm;
-    }
+    .count-line { font-size: 11pt; }
+    .date-line { font-size: 10pt; margin-top: 2mm; }
 }
