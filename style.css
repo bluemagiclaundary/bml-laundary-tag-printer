@@ -4,10 +4,7 @@ body {
     background: #fafafa;
 }
 
-h2 {
-    color: #0b5ed7;
-    margin-bottom: 25px;
-}
+h2 { color: #0b5ed7; margin-bottom: 25px; }
 
 .form {
     max-width: 420px;
@@ -17,25 +14,9 @@ h2 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 14px;
-}
-
-.row label {
-    width: 160px;
-    font-weight: 600;
-    color: #333;
-}
-
-.row input,
-.row select {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+.row { display: flex; align-items: center; margin-bottom: 14px; }
+.row label { width: 160px; font-weight: 600; color: #333; }
+.row input, .row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
 
 button {
     padding: 10px 16px;
@@ -49,14 +30,7 @@ button {
     font-weight: bold;
 }
 
-button:hover {
-    background-color: #084298;
-}
-
-/* Screen Preview for Tags */
-#tags {
-    margin-top: 30px;
-}
+#tags { margin-top: 30px; }
 
 .tag {
     width: 150px;
@@ -68,7 +42,7 @@ button:hover {
     background: white;
 }
 
-/* --- 2. PRINT STYLING (Your exact settings for the 38mm Roll) --- */
+/* --- PRINT STYLING --- */
 @media print {
     @page {
         size: 38mm 45mm;
@@ -76,20 +50,13 @@ button:hover {
     }
     
     body { margin: 0; padding: 0; width: 38mm; background: none; }
+    .no-print { display: none !important; }
     
-    /* Hide everything except the tags */
-    .form, h2, button, br { display: none !important; }
-    
-    #tags { 
-        margin: 0; 
-        padding: 0; 
-        width: 38mm; 
-        display: block !important; 
-    }
+    #tags { margin: 0; padding: 0; width: 38mm; display: block !important; }
 
     .tag {
         width: 38mm;
-        height: 40mm; /* Safety gap to prevent blank labels */
+        height: 44mm; /* Adjusted to prevent blank page overflow */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -101,28 +68,29 @@ button:hover {
         page-break-after: always;
         break-after: page;
         overflow: hidden;
+        box-sizing: border-box;
     }
 
     .tag div { 
         font-family: 'Arial', sans-serif; 
-        font-weight: 900 !important; 
+        font-weight: 700 !important; /* Cleaner look for Taffeta */
         color: #000;
-        line-height: 1.0; 
+        line-height: 1.1; 
         margin: 0;
     }
 
-    .bml-head { font-size: 14pt; margin-top: 2mm; margin-bottom: 1mm; }
-    .order-line { font-size: 20pt; margin-bottom: 1mm; }
+    .bml-head { font-size: 14pt; margin-top: 2mm; }
+    .order-line { font-size: 18pt; margin-bottom: 1mm; }
     .cust-name { font-size: 10pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
     
     .service-line { 
-        font-size: 13pt; 
+        font-size: 12pt; 
         border-top: 2px solid #000; 
         margin-top: 1mm; 
         padding-top: 1mm;
         width: 90%; 
     }
 
-    .count-line { font-size: 13pt; margin-top: 1mm; }
+    .count-line { font-size: 12pt; margin-top: 1mm; }
     .date-line { font-size: 11pt; margin-top: 2mm; }
 }
