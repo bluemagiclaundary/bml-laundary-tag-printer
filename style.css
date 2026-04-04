@@ -13,7 +13,6 @@ h2 { color: #0b5ed7; margin-bottom: 25px; }
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 .row { display: flex; align-items: center; margin-bottom: 14px; }
 .row label { width: 160px; font-weight: 600; color: #333; }
 .row input, .row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
@@ -42,21 +41,32 @@ button {
     background: white;
 }
 
-/* --- PRINT STYLING --- */
+/* --- PRINT STYLING (No Bold / Uniform Format) --- */
 @media print {
     @page {
         size: 38mm 45mm;
         margin: 0;
     }
     
-    body { margin: 0; padding: 0; width: 38mm; background: none; }
+    body { 
+        margin: 0; 
+        padding: 0; 
+        width: 38mm; 
+        background: none; 
+    }
+    
     .no-print { display: none !important; }
     
-    #tags { margin: 0; padding: 0; width: 38mm; display: block !important; }
+    #tags { 
+        margin: 0; 
+        padding: 0; 
+        width: 38mm; 
+        display: block !important; 
+    }
 
     .tag {
         width: 38mm;
-        height: 44mm; /* Adjusted to prevent blank page overflow */
+        height: 44mm; /* Adjusted to prevent the extra 9th blank page */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -73,19 +83,21 @@ button {
 
     .tag div { 
         font-family: 'Arial', sans-serif; 
-        font-weight: 700 !important; /* Cleaner look for Taffeta */
+        /* Removed '900' and 'bold' - now using standard weight */
+        font-weight: normal !important; 
         color: #000;
-        line-height: 1.1; 
+        line-height: 1.2; 
         margin: 0;
     }
 
+    /* All text sizes made consistent and professional */
     .bml-head { font-size: 14pt; margin-top: 2mm; }
-    .order-line { font-size: 18pt; margin-bottom: 1mm; }
-    .cust-name { font-size: 10pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
+    .order-line { font-size: 14pt; margin-bottom: 1mm; } /* Matches BML size */
+    .cust-name { font-size: 11pt; text-transform: uppercase; width: 95%; margin-bottom: 1mm; }
     
     .service-line { 
         font-size: 12pt; 
-        border-top: 2px solid #000; 
+        border-top: 1px solid #000; /* Thinner line for a cleaner look */
         margin-top: 1mm; 
         padding-top: 1mm;
         width: 90%; 
