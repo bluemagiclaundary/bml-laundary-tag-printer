@@ -11,7 +11,6 @@ function generateTags() {
         return;
     }
 
-    // Helper to format date as "4th Apr 26"
     function formatDate(dateStr) {
         if (!dateStr) return "---";
         const date = new Date(dateStr);
@@ -19,18 +18,16 @@ function generateTags() {
         const month = date.toLocaleString('default', { month: 'short' });
         const year = date.getFullYear().toString().slice(-2);
 
-        // Add suffix (st, nd, rd, th)
         let suffix = 'th';
-        if (day === 1 || day === 21 || day === 31) suffix = 'st';
-        else if (day === 2 || day === 22) suffix = 'nd';
-        else if (day === 3 || day === 23) suffix = 'rd';
+        if (day % 10 === 1 && day !== 11) suffix = 'st';
+        else if (day % 10 === 2 && day !== 12) suffix = 'nd';
+        else if (day % 10 === 3 && day !== 13) suffix = 'rd';
 
         return `${day}${suffix} ${month} ${year}`;
     }
 
     const formattedDate = formatDate(delivery);
 
-    // 1. Get Quantities
     const dcTotal = parseInt(document.getElementById('dcQty').value) || 0;
     const starchCount = parseInt(document.getElementById('dcStarchQty').value) || 0;
     const starchType = document.getElementById('dcStarchType').value || 'M';
@@ -43,13 +40,12 @@ function generateTags() {
     const totalPcs = dcTotal + wi + wf + si + pol;
     let currentNum = 1;
 
-    // Helper to render tag
     function render(label) {
         const tag = document.createElement('div');
         tag.className = 'tag';
         tag.innerHTML = `
             <div class="bml-head">BML</div>
-            <div class="order-line">#${orderNo}</div>
+            <div class="order-line">${orderNo}</div>
             <div class="cust-name">${customer.toUpperCase()}</div>
             <div class="service-line">${label}</div>
             <div class="count-line">TP: ${currentNum} / ${totalPcs}</div>
@@ -59,13 +55,10 @@ function generateTags() {
         currentNum++;
     }
 
-    // 2. DC Loop
     for (let i = 1; i <= dcTotal; i++) {
         let label = (i <= starchCount) ? `DC ST-${starchType}` : `DC`;
         render(label);
     }
-
-    // 3. Others
     for (let i = 1; i <= wi; i++) render('W&I');
     for (let i = 1; i <= wf; i++) render('W&F');
     for (let i = 1; i <= si; i++) render('S.IRON');
