@@ -1,10 +1,14 @@
+/* GENERAL SCREEN STYLING */
 body {
     font-family: Arial, sans-serif;
     margin: 40px;
     background: #fafafa;
 }
 
-h2 { color: #0b5ed7; margin-bottom: 25px; }
+h2 { 
+    color: #0b5ed7; 
+    margin-bottom: 25px; 
+}
 
 .form {
     max-width: 420px;
@@ -13,9 +17,26 @@ h2 { color: #0b5ed7; margin-bottom: 25px; }
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.row { display: flex; align-items: center; margin-bottom: 14px; }
-.row label { width: 160px; font-weight: 600; color: #333; }
-.row input, .row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+.row { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 14px; 
+}
+
+.row label { 
+    width: 160px; 
+    font-weight: 600; 
+    color: #333; 
+}
+
+.row input, 
+.row select { 
+    flex: 1; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+}
 
 button {
     padding: 10px 16px;
@@ -29,8 +50,11 @@ button {
     font-weight: bold;
 }
 
-#tags { margin-top: 30px; }
+#tags { 
+    margin-top: 30px; 
+}
 
+/* TAG DESIGN (SCREEN VIEW) */
 .tag {
     width: 150px;
     border: 1px dashed black;
@@ -40,20 +64,22 @@ button {
     text-align: center;
     background: white;
 }
+
+/* ================= PRINT STYLING ================= */
 @media print {
+
     @page {
         size: 38mm 45mm;
         margin: 0;
     }
 
-    html, body {
-        width: 38mm;
-        height: 45mm;
+    body {
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        background: none;
     }
 
+    /* Hide unnecessary UI */
     .no-print, .form, h2, button, br {
         display: none !important;
     }
@@ -63,9 +89,10 @@ button {
         padding: 0;
     }
 
+    /* EACH TAG = ONE PAGE */
     .tag {
         width: 38mm;
-        height: 45mm; /* EXACT MATCH with page */
+        height: 45mm;
         box-sizing: border-box;
 
         display: block;
@@ -76,13 +103,16 @@ button {
         padding: 2mm;
 
         page-break-after: always;
+        break-after: page;
     }
 
-    /* IMPORTANT: prevent extra blank page */
+    /* PREVENT EXTRA BLANK PAGE */
     .tag:last-child {
         page-break-after: auto;
+        break-after: auto;
     }
 
+    /* TEXT STYLING */
     .tag div {
         font-family: Arial, sans-serif;
         font-weight: normal !important;
