@@ -1,5 +1,5 @@
 function generateTags() {
-    const orderNo = document.getElementById('orderNo').value;
+    const orderNo = document.getElementById('orderNo').value.toUpperCase();
     const customer = document.getElementById('customer').value;
     const delivery = document.getElementById('delivery').value;
     const tagsContainer = document.getElementById('tags');
