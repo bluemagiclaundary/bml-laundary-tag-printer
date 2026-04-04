@@ -67,7 +67,7 @@ button {
     .tag {
         width: 38mm;
         /* Reduced from 44mm to 42mm to force the 9th page to vanish */
-        height: 42mm; 
+        height: 40mm; 
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
