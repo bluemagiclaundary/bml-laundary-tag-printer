@@ -71,7 +71,7 @@ button {
 @media print {
 
     @page {
-        size: 38mm 44mm;
+        size: 38mm 45mm;
         margin: 0;
     }
 
@@ -95,7 +95,7 @@ button {
     /* 🔥 CORE FIX FOR MULTIPLE TAG PRINTING */
     .tag {
         width: 38mm;
-        height: 44mm;
+        height: 45mm;
 
         display: table;              /* KEY FIX */
         table-layout: fixed;
@@ -105,7 +105,7 @@ button {
 
         box-sizing: border-box;
         margin: 0;
-        padding: 1mm;
+        padding: 0;
         border: none;
 
         text-align: center;
